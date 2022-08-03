@@ -45,8 +45,6 @@ public class PDFGeneratorService {
         headerCell = new PdfPCell(new Phrase("Description", headFont));
         headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
         pdfPTable.addCell(headerCell);
-
-
         PdfPCell rowCell;
         for(Book book:  bookList ){
             rowCell = new PdfPCell(new Phrase(book.getName().toString()));

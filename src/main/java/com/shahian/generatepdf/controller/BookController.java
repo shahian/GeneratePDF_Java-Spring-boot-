@@ -23,7 +23,6 @@ public class BookController {
 	public BookController(PDFGeneratorService pdfGeneratorService) {
 		this.pdfGeneratorService = pdfGeneratorService;
 	}
-
 	@GetMapping(value = "/v1/Books")
 	public ResponseEntity<?> generatePDF (HttpServletResponse response) throws IOException {
 		List<Book> bookList=new ArrayList<>();
@@ -41,6 +40,4 @@ public class BookController {
 				.contentType(MediaType.APPLICATION_PDF)
 				.body(targetArray);
 	}
-
-
 }
