@@ -40,4 +40,23 @@ public class BookController {
 				.contentType(MediaType.APPLICATION_PDF)
 				.body(targetArray);
 	}
+
+	@GetMapping(value = "/v2/Books")
+	public ResponseEntity<?> generatePersianPDF (HttpServletResponse response) throws IOException {
+		List<Book> bookList=new ArrayList<>();
+		var book1 = new Book("آموزش اسپرینگ1", "توضیحات 1", "ناشر 1");
+		bookList.add(book1);
+		var book2 = new Book("آموزش اسپرینگ2", "توضیحات 2", "ناشر 2");
+		bookList.add(book2);
+		var book3= new Book("آموزش اسپرینگ3", "توضیحات 3", "ناشر 3");
+		bookList.add(book3);
+		ByteArrayInputStream byteArrayInputStream =  this.pdfGeneratorService.exportPersianPdf(response, bookList);
+		byte[] targetArray = new byte[byteArrayInputStream.available()];
+		return ResponseEntity
+				.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=financialStatement.pdf; charset=UTF-8")
+				.contentType(MediaType.APPLICATION_PDF)
+				.body(targetArray);
+	}
+
 }
